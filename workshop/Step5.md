@@ -1,55 +1,47 @@
-# Deploy the application to Kubernetes
+# Using Gemini
 
-## Create a Google Kubernetes Engine Cluster
+This last step is a brief introduction to adding another endpoint powered by Google latest LLM model, Gemini.
+
+### Switch to a new code branch
+In your termed session, switch to the `gemini` branch
+```shell
+git checkout gemini
+```
+We added a new `chat-gemini` in `ModelResource` class that uses Gemini. The important additional pieces are below
+
+```java
+ ChatLanguageModel model = VertexAiGeminiChatModel.builder()
+    .project("mohamed-playground")
+    .project(System.getenv("PROJECT_ID"))
+    .location(System.getenv("LOCATION"))
+    .build();
+
+    String aiMessage = model.generate(userMessage);
+
+    return List.of(
+    "Me:     " + userMessage,
+    "Agent:  " + aiMessage.trim());
+```
+In this  example, we used the `VertexAiGeminiChatModel` class, which implements the ChatModel interface. This class is a wrapper around the Vertex AI API, which allows you to interact with the Gemini model.
+Next, we're going to configure the chat language model, by using the builder for the `VertexAiGeminiChatModel`.
+Now that the language model is ready, we can call the generate() method and pass your "prompt" (ie. your question or instructions to send to the LLM).
+
+### Deploy the app locally
+
+Use the Maven wrapper to start the application by using the [Liberty dev mode](https://openliberty.io/docs/latest/development-mode.html):
 
 ```
-export PROJECT_ID=$(gcloud config get-value project)
-export ZONE=us-east1-b
-
-gcloud container --project $PROJECT_ID clusters create devnexus-workshop \
-    --enable-kubernetes-alpha \
-    --cluster-version "1.29.3-gke.1093000"\
-    --machine-type "e2-medium" \
-    --disk-type "pd-standard" \
-    --disk-size "50" \
-    --num-nodes "2" \
-    --addons HorizontalPodAutoscaling,HttpLoadBalancing \
-    --no-enable-autorepair \
-    --no-enable-autoupgrade \
-    --zone $ZONE --quiet
+./mvnw liberty:dev
 ```
 
-## Deploy and test the application
+### Test the application
+Navigate to the [OpenAPI UI](http://localhost:9080/openapi/ui), and you can see that we have an additional endpoint now, `/api/model/chat-gemini`.
 
-Edit the file `k8s/basic/deployment.yaml`:
-
-- Change the value of the `HUGGING_FACE_API_KEY` environment variable
-- Change the value of `PROJECT_ID` to match your project ID
-
-Run the command below to deploy the app
-
-```
-kubectl apply -f k8s/basic/deployment.yaml
-```
-
-Wait for the Pod to get to the `READY` state
-
-```
-kubectl get pods -w
-```
-
-Access the application. You will need to copy the name of the pod form the previous step
-
-```
-kubectl port-forward pod/POD_NAME 9080:9080
-```
-
-Use the Cloud Shell Web Preview to open the app
-
-## Clean up
-
-Exit port-forward by pressing `Ctrl+C`
-
-```
-kubectl delete -f k8s/basic/deployment.yaml
-```
+- expand the GET `/api/model/chat-gemini` API
+    1. Click the **Try it out** button.
+    2. Type `Which are the most used Large Language Models?`, or any question, in the question field.
+    3. Click the **Execute** button.
+- Alternatively, open a new Terminal Tab in Cloud Shell and run the following `curl` command from a command-line session:
+    - ```
+      curl -s 'http://localhost:9080/api/model/chat?userMessage=Which%20are%20the%20most%20used%20Large%20Language%20models%3F' | jq
+      ```

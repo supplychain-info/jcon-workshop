@@ -14,7 +14,15 @@ Run the container locally
 docker run -p 9080:9080 -e HUGGING_FACE_API_KEY=$HUGGING_FACE_API_KEY jcon-workshop-app
 ```
 
-Use the Web Browser Open the App
+Use the Web Browser, Open the App
+
+[http://localhost:9080](http://localhost:9080)
+
+Terminate the docker session. Now create an SBOM for the image
+
+```
+docker scout sbom --format list jcon-workshop-app
+```
 
 ## Using Buildpacks 
 

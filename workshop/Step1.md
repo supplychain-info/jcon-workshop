@@ -37,7 +37,7 @@ Use the Maven wrapper to start the application by using the [Liberty dev mode](h
 
 ## Open in a browser
 
-[localhost:9080]
+[http://localhost:9080](http://localhost:9080)
 
 ## Try out the application
 
@@ -54,7 +54,7 @@ Use the Maven wrapper to start the application by using the [Liberty dev mode](h
 
 ### Try out other models
 
-Navigate to the the OpenAPI UI by appending `openapi/ui` to the URL after `BASE_URL/cloudshell.dev/`. for the following 3 REST APIs:
+Navigate to the the OpenAPI UI by appending `openapi/ui` to the URL so [http://localhost:9080/openapi/ui](http://localhost:9080/openapi/ui). for the following 3 REST APIs:
 
 - [HuggingFaceLanguageModel](https://github.com/langchain4j/langchain4j/blob/main/langchain4j-hugging-face/src/main/java/dev/langchain4j/model/huggingface/HuggingFaceLanguageModel.java)
   - Expand the GET `/api/model/language` API.
@@ -70,7 +70,7 @@ Navigate to the the OpenAPI UI by appending `openapi/ui` to the URL after `BASE_
     1. Click the **Try it out** button.
     2. Type `Which are the most used Large Language Models?`, or any question, in the question field.
     3. Click the **Execute** button.
-  - Alternatively, open a new Terminal Tab in Cloud Shell and run the following `curl` command from a command-line session:
+  - Alternatively, open a new Terminal and run the following `curl` command from a command-line session:
     - ```
       curl -s 'http://localhost:9080/api/model/chat?userMessage=Which%20are%20the%20most%20used%20Large%20Language%20models%3F' | jq
       ```

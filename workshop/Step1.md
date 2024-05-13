@@ -4,6 +4,8 @@ This example demonstrates LangChain4J in a Jakarta EE / MicroProfile application
 ## Prerequisites:
 
 - [Java 17](https://developer.ibm.com/languages/java/semeru-runtimes/downloads)
+- Docker (or Podman)
+- [Pack CLI Installation Instructions](https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/)
 - Hugging Face API Key
   - Sign up and log in to https://huggingface.co.
   - Go to [Access Tokens](https://huggingface.co/settings/tokens). 

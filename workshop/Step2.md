@@ -23,6 +23,7 @@ Terminate the docker session. Now create an SBOM for the image
 ```
 docker scout sbom --format list jcon-workshop-app
 ```
+Take a moment to look at the contents produced.
 
 ## Using Buildpacks 
 

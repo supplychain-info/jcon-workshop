@@ -12,10 +12,10 @@ This example demonstrates LangChain4J in a Jakarta EE / MicroProfile application
   - Create a new access token with `read` role.
   
 ## Environment Set Up
-Clone this [Repo](https://github.com/aboullaite/devnexus-workshop) 
+Clone this [Repo](https://github.com/supplychain-info/jcon-workshop.git)
 
 ```
-git clone https://github.com/supplychain-info/jcon-2024.git
+git clone https://github.com/supplychain-info/jcon-workshop.git
 
 cd jcon-2024
 ```

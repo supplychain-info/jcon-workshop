@@ -28,7 +28,7 @@ Before you begin, ensure you have the following installed:
    Clone this repository to your local machine using the following command:
 
    ```shell
-   git clone https://github.com/supplychain-info/jcon-2024.git
+   git clone https://github.com/supplychain-info/jcon-workshop.git
    ```
 2. **Local Environment Setup**
 
